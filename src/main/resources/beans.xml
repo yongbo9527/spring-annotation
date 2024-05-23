@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+    <!-- 包扫描、只要标注了@Controller、@Service、@Repository，@Component -->
+    <!-- <context:component-scan base-package="org.example" use-default-filters="false"></context:component-scan> -->
+
+    <!-- 注册组件 test01 -->
+    <bean id="person" class="org.example.Person">
+        <property name="name" value="尤娜"></property>
+        <property name="age" value="18"></property>
+    </bean>
+
+    <!-- 开启基于注解版的切面功能 -->
+<!--    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>-->
+</beans>
