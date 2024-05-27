@@ -1,8 +1,12 @@
 package org.example.config;
 
 import org.example.Person;
+import org.example.bean.Color;
+import org.example.bean.Red;
 import org.example.condition.LinuxCondition;
 import org.example.impl.ColorFactoryBean;
+import org.example.impl.MyImportBeanDefinitionRegistrar;
+import org.example.impl.MyImportSelector;
 import org.springframework.context.annotation.*;
 
 /**
@@ -10,6 +14,7 @@ import org.springframework.context.annotation.*;
  * @Create: 2023-05-24 15:19
  */
 @Configuration
+@Import({Color.class, Red.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
 public class MainConfig2 {
 
     //默认是单实例的

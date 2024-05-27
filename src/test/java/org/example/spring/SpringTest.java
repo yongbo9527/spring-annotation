@@ -92,6 +92,53 @@ public class SpringTest {
         }
     }
 
+    /**
+     * 测试Spring容器中的scope和prototype
+     */
+    @Test
+    public void test05() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
+        Person person = (Person) applicationContext.getBean("person");
+        Person person1 = (Person) applicationContext.getBean("person");
+
+        System.out.println(person == person1);
+
+    }
+
+
+    /**
+     * 测试@condition注解
+     */
+    @Test
+    public void test06() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
+        String[] beanNamesForType = applicationContext.getBeanNamesForType(Person.class);
+        for (String s : beanNamesForType) {
+            System.out.println(s);
+        }
+
+        Map<String, Person> beansOfType = applicationContext.getBeansOfType(Person.class);
+        System.out.println(beansOfType);
+
+    }
+
+    /**
+     * 测试@import注解
+     * @Import[快速给容器中导入一个组件]
+     * 		1）、@Import(要导入到容器中的组件)；容器中就会自动注册这个组件，id默认是全类名
+     * 		2）、ImportSelector:返回需要导入的组件的全类名数组；
+     * 		3）、ImportBeanDefinitionRegistrar:手动注册bean到容器中
+     *
+     */
+    @Test
+    public void test07() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        for (String beanDefinitionName : beanDefinitionNames) {
+            System.out.println(beanDefinitionName);
+        }
+
+    }
 
 
 
