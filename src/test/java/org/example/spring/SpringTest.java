@@ -3,6 +3,7 @@ package org.example.spring;
 import org.example.Person;
 import org.example.config.MainConfig;
 import org.example.config.MainConfig2;
+import org.example.config.MainConfig3;
 import org.example.config.MainConfig4;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -132,12 +133,30 @@ public class SpringTest {
      */
     @Test
     public void test07() {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig3.class);
         String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         for (String beanDefinitionName : beanDefinitionNames) {
             System.out.println(beanDefinitionName);
         }
 
+    }
+
+    /**
+     * 测试FactoryBean生成bean对象
+     * MainConfig4.class
+     *
+     */
+    @Test
+    public void test08() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig4.class);
+        // 工厂Bean获取的是调用getObject创建的对象，即Color对象
+        Object colorFactoryBean = applicationContext.getBean("colorFactoryBean");
+        System.out.println(colorFactoryBean.getClass());
+
+        // 添加 & ,获取工厂Bean本身，即ColorFactoryBean对象
+        // BeanFactory.class
+        Object colorFactoryBean1 = applicationContext.getBean("#colorFactoryBean");
+        System.out.println(colorFactoryBean1.getClass());
     }
 
 
